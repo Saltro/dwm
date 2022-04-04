@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -65,6 +66,10 @@ static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL }; /* dmenu -> r
 static const char *termcmd[]  = { "kitty", NULL }; /* st -> kitty */
 static const char scratchpadname[] = "st";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *increasevolume[] = { "amixer", "sset", "Master", "5%+", NULL };
+static const char *decreasevolume[] = { "amixer", "sset", "Master", "5%-", NULL };
+static const char *mutevolume[] = { "amixer", "sset", "Master", "toggle", NULL };
+static const char *toggleDisplay[] = { "bash", "/home/saltro/toggleDisplay.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,6 +111,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_r,  togglescratch,  {.v = scratchpadcmd } },
+    { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume } },
+    { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume } },
+    { 0,                            XF86XK_AudioMute, spawn, {.v = mutevolume } },
+    { MODKEY,                       XK_v, spawn, {.v = toggleDisplay } },
 };
 
 /* button definitions */
