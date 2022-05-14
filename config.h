@@ -64,8 +64,6 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL }; /* dmenu -> rofi */
 static const char *termcmd[]  = { "kitty", NULL }; /* st -> kitty */
-static const char scratchpadname[] = "st";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static const char *increasevolume[] = { "amixer", "sset", "Master", "5%+", NULL };
 static const char *decreasevolume[] = { "amixer", "sset", "Master", "5%-", NULL };
 static const char *mutevolume[] = { "amixer", "sset", "Master", "toggle", NULL };
@@ -110,7 +108,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,                       XK_r,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_r,  spawn,  {.v = termcmd } },
     { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume } },
     { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume } },
     { 0,                            XF86XK_AudioMute, spawn, {.v = mutevolume } },
